@@ -10,6 +10,7 @@ module.exports = (app) => {
             description: '$5 for 5 credits',
             source: req.body.id,
         });
+        console.log(req.body);
         req.user.credits += 5;
         const user = await req.user.save();
         res.send(user);
