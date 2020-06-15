@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class Paymenst extends Component {
+class Payments extends Component {
     render() {
         return (
             <StripeCheckout
@@ -19,4 +19,4 @@ class Paymenst extends Component {
     }
 }
 
-export default connect(null, actions)(Paymenst);
+export default connect(null, actions)(Payments);
