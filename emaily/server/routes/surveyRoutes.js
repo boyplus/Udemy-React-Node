@@ -4,10 +4,13 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+const { mail } = require('sendgrid');
 
 module.exports = (app) => {
     app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
+        console.log('hello');
         const { title, body, subject, recipients } = req.body;
+        console.log(title,body,subject,recipients);
         const survey = new Survey({
             title,
             body,
@@ -20,6 +23,8 @@ module.exports = (app) => {
         });
 
         //send an email
-        const email = new Mailer(survey, surveyTemplate(survey));
+        const mailer = new Mailer(survey, surveyTemplate(survey));
+        mailer.send();
+        
     });
 };
